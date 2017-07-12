@@ -1,0 +1,19 @@
+# Common
+**/*.log
+
+# Mac
+.DS_Store
+
+# Vagrant
+.vagrant
+
+# Ansible
+*.retry
+tests/_roles/*
+!tests/_roles/.keep
+
+# Python
+*.pyc
+
+# Node.js
+node_modules

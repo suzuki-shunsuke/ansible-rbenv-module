@@ -1,0 +1,17 @@
+{
+  "name": "ansible-rbenv-module",
+  "description": "ansible module to run rbenv command",
+  "author": "Suzuki Shunsuke <suzuki.shunsuke.1989@gmail.com>",
+  "repository": "https://github.com/suzuki-shunsuke/ansible-rbenv-module",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "release": "standard-version",
+    "commitmsg": "validate-commit-msg"
+  },
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "standard-version": "^4.2.0",
+    "validate-commit-msg": "^2.12.2"
+  }
+}

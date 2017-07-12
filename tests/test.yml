@@ -1,0 +1,113 @@
+---
+- hosts: all
+  vars_files:
+  - vars/main.yml
+  roles:
+  - role: geerlingguy.git
+    become: "{{nonroot}}"
+  - suzuki-shunsuke.rbenv
+  - ansible-rbenv-module
+  tasks:
+  - name: rbenv install --list
+    rbenv:
+      list: yes
+      rbenv_root: "{{rbenv_root}}"
+    register: result
+    failed_when: result.failed or result.changed
+  - debug:
+      var: result.versions
+  - name: rbenv global
+    rbenv:
+      subcommand: global
+      rbenv_root: "{{rbenv_root}}"
+    register: result
+    failed_when: result.failed or result.changed
+  - debug:
+      var: result
+  - name: rbenv install --skip-existing 2.4.0
+    rbenv:
+      version: 2.4.0
+      rbenv_root: "{{rbenv_root}}"
+    register: result
+  - debug:
+      var: result
+  - name: rbenv install --skip-existing 2.4.0
+    rbenv:
+      version: 2.4.0
+      rbenv_root: "{{rbenv_root}}"
+    register: result
+    failed_when: result.failed or result.changed
+  - debug:
+      var: result
+  - name: rbenv install --skip-existing 2.3.1
+    rbenv:
+      version: 2.3.1
+      rbenv_root: "{{rbenv_root}}"
+    register: result
+  - debug:
+      var: result
+  - name: rbenv versions --bare --skip-aliases
+    rbenv:
+      subcommand: versions
+      rbenv_root: "{{rbenv_root}}"
+    register: result
+    failed_when: result.failed or result.changed
+  - debug:
+      var: result
+  - name: rbenv versions --skip-aliases
+    rbenv:
+      subcommand: versions
+      rbenv_root: "{{rbenv_root}}"
+      bare: no
+    register: result
+    failed_when: result.failed or result.changed
+  - debug:
+      var: result
+  - name: rbenv versions --bare
+    rbenv:
+      subcommand: versions
+      rbenv_root: "{{rbenv_root}}"
+      skip_aliases: no
+    register: result
+    failed_when: result.failed or result.changed
+  - debug:
+      var: result
+  - name: rbenv global 2.4.0
+    rbenv:
+      subcommand: global
+      version: 2.4.0
+      rbenv_root: "{{rbenv_root}}"
+    register: result
+  - debug:
+      var: result
+  - name: rbenv global
+    rbenv:
+      subcommand: global
+      rbenv_root: "{{rbenv_root}}"
+    register: result
+    failed_when: result.failed or result.changed
+  - debug:
+      var: result
+  - name: rbenv uninstall --force 2.3.1
+    rbenv:
+      subcommand: uninstall
+      version: 2.3.1
+    environment:
+      RBENV_ROOT: "{{rbenv_root}}"
+    register: result
+  - debug:
+      var: result
+  - name: rbenv uninstall --force 2.3.1
+    rbenv:
+      subcommand: uninstall
+      version: 2.3.1
+    environment:
+      RBENV_ROOT: "{{rbenv_root}}"
+    register: result
+    failed_when: result.failed or result.changed
+  - debug:
+      var: result
+  - name: install rake on ruby 2.4.0
+    gem:
+      name: rake
+      executable: "{{rbenv_root}}/versions/2.4.0/bin/gem"

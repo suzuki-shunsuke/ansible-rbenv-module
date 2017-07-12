@@ -1,0 +1,4 @@
+nonroot: "{{ (ansible_env.USER is undefined) | ternary(ansible_env.HOME != '/root', ansible_env.USER != 'root') }}"
+rbenv_root: "{{ansible_env.HOME}}/rbenv"
+rbenv_is_dependencies_installed: yes
+rbenv_rc_path: "{{ansible_env.HOME}}/.bashrc"
