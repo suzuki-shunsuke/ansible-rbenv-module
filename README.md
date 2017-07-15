@@ -205,6 +205,10 @@ but you can do it with [the official gem module](http://docs.ansible.com/ansible
 
 See [CHANGELOG.md](CHANGELOG.md).
 
+## See also
+
+* [suzuki-shunsuke.rbenv](https://github.com/suzuki-shunsuke/ansible-rbenv): ansible role to install rbenv
+
 ## Licence
 
 [MIT](LICENSE)
